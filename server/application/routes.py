@@ -9,10 +9,6 @@ from flask_cors import CORS, cross_origin
 from server.application.forms import RegistrationForm, LoginForm, EditForm
 from .models import db, User
 
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/PostgreDB'
-#
-# db = SQLAlchemy(app)
 
 CORS(app)
 
@@ -142,7 +138,6 @@ def delete():
 def edit():
     form = EditForm()
     user = None
-    print('SOSAKA')
     if request.method == 'POST':
 
         data = request.get_json()
@@ -159,7 +154,7 @@ def edit():
             db.session.commit()
             return jsonify(user.to_dict()), 201
     else:
-        print('Suka')
+        print('Error')
     return jsonify({'success': False})
 
 

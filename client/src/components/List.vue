@@ -28,8 +28,9 @@
         </table>
         <b-modal id="book-edit-modal"
                  title="Edit user"
+                 ref="userModal"
                  hide-footer>
-            <b-form class="w-100" @submit="">
+            <b-form class="w-100" @submit="localEditForm">
                 <b-form-group id="form-title-group"
                               label="Title:"
                               label-for="form-title-input">
@@ -60,7 +61,7 @@
                                   placeholder="Birthday">
                     </b-form-input>
                 </b-form-group>
-                <b-button type="submit" variant="primary"  v-on:click.prevent="editUser(editForm)">Confirm</b-button>
+                <b-button type="submit" variant="primary">Confirm</b-button>
                 <b-button type="reset" variant="danger">Cancel</b-button>
             </b-form>
         </b-modal>
@@ -93,6 +94,11 @@
                 'deleteUser',
                 'editUser'
             ]),
+            localEditForm(event) {
+                event.preventDefault()
+                this.$refs.userModal.hide()
+                this.editUser(this.editForm)
+            },
             openEdit(user) {
                 this.editForm.id = user.id
                 this.editForm.name = user.name
