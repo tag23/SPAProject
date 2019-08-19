@@ -1,18 +1,7 @@
-# Server
-```
-cd server
-```
-## Project setup
-```
-pip install -r requirements.txt
-```
+# Environment
 
-### Go back
-```
-cd ..
-```
+Check ```server/README.md``` and ```client/README.md``` for project configuration
 
-### Run server
-```
-python wsgi.py
-```
+# Data Base Path 
+DB path can be modified in ```config.py``` in ```SQLALCHEMY_DATABASE_URI``` field;\
+Required DB Server: ```postgresql```
