@@ -3,10 +3,6 @@ import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
 import {
-    fetchSurveys,
-    fetchSurvey,
-    saveSurveyResponse,
-    postNewSurvey,
     authenticate,
     register,
     getUserList,
@@ -29,7 +25,6 @@ const actions = {
 
         return authenticate(userData)
             .then(response => {
-                console.log(response.data)
                 context.commit('setJwtToken', {jwt: response.data})
             })
             .catch(error => {
@@ -47,14 +42,12 @@ const actions = {
             })
     },
     isJwtTokenExist(context) {
-        console.log('Call jwttocken')
-        console.log(localStorage.token)
         if (localStorage.token) {
             context.commit('setJwtToken', {jwt: {token: localStorage.token}})
         }
     },
     getUsers(context) {
-        console.log(context.state.jwt)
+
         getUserList(context.state.jwt)
             .then((res) => context.commit('setUsers', res.data.data.users))
     },
@@ -64,7 +57,7 @@ const actions = {
     },
     async editUser(context, userData) {
         await editUser(userData, context.state.jwt)
-        //context.commit('editUser', {userData})
+        context.commit('editUser', userData)
     },
     async deleteUser(context, userId) {
         await deleteUser(userId, context.state.jwt)
@@ -75,6 +68,14 @@ const actions = {
 const mutations = {
     logout(state) {
         state.jwt = ''
+    },
+    editUser(state, payload) {
+        const user = state.users.find((user)=>user.id === payload.id)
+        if (user) {
+            user.name = payload.name
+            user.surname = payload.surname
+            user.birthday_date = payload.birthday_date
+        }
     },
     deleteUser(state, payload) {
         state.users = state.users.filter((user) => user.id !== payload.userId)
