@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="card mx-auto mt-5">
+            <div class="card-header text-center">List of users</div>
+            <ul class="list-group">
+                {% for user in users %}
+                    <li class="list-group-item">
+                        <div class="input-group">
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ loop.index }}</span>
+                            </div>
+
+                            <a href="/user/{{ user.id }}" class="d-inline-block form-control">{{ user.name }}</a>
+                            <a href="/user/{{ user.id }}" class="d-inline-block form-control">{{ user.surname }}</a>
+                            <p class="d-inline-block form-control">{{ user.birthday_date }}</p>
+                            <p class="d-inline-block form-control">{{ user.user_login }}</p>
+
+                            <form action="#" method="post" class="">
+                                <a href="/edit" class="btn btn-success ml-3">Edit</a>
+
+                                <button type="submit" name="deleteUser" value="{{ user.id }}"
+                                        class="btn btn-danger ml-3">Delete
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

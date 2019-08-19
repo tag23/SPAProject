@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header text-center">Registration</div>
+
+
+            <div class="card-body">
+                {% from "_formhelpers.html" import form_field %}
+                {# <form method="post" action="/add_new_user"> #}
+                <form method="post" action="{{ url_for("register") }}">
+                    {{ form.csrf_token }}
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    {{ form.name(size=20, id="register-form__name",
+                                     class="form-control register-form__field") }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    {{ form.surname(size=20, id="register-form__surname",
+                                     class="form-control register-form__field") }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">
+                                    {{ form.birthday_date.label.text[0:8].capitalize() }}
+                                </label>
+                            </div>
+
+                            {{ form.birthday_date(size=14, id="register-form__birthday_date",
+                             class="form-control register-form__field col form-control", type="date") }}
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            {{ form.user_login(size=25, id="register-form__user_login",
+                             class="form-control register-form__field") }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            {{ form.password(size=25, id="register-form__password",
+                             class="form-control register-form__field", type="password") }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            {{ form.confirm(size=25, id="register-form__confirm",
+                             class="form-control register-form__field", type="password") }}
+                        </div>
+                    </div>
+                    <input type="submit" id="register-form__button" class="btn btn-primary btn-block" value="Register">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
