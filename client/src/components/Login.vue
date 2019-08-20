@@ -22,6 +22,7 @@
                             </div>
                         </div>
                         <button class="btn btn-primary btn-block" @click="authenticate">Login</button>
+                        <a v-bind:href="'/register'" class="mt-2">Don't have an account?</a>
                     </div>
                 </div>
             </div>

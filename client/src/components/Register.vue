@@ -82,7 +82,7 @@
                     password: this.password,
                     confirm: this.confirm,
                 })
-                    .then(() => this.$router.push('/'))
+                    .then(() => this.$router.push('/list'))
             }
         },
         mounted() {
